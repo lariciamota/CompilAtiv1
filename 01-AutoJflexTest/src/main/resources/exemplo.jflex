@@ -2,7 +2,7 @@ package atividade1;
 
 %%
 
-/* Não altere as configurações a seguir */
+/* Nï¿½o altere as configuraï¿½ï¿½es a seguir */
 
 %line
 %column
@@ -13,10 +13,18 @@ package atividade1;
 %class Minijava
 %eofclose
 
-/* Insira as regras léxicas abaixo */
+WS = [\n|\t|\r|\f| ]
+COMENT = [(//)(.)* | (/\*)([^*]|(\*+([^*/])))*(\*+/)]
+ID = ([A-Za-z_])([A-Za-z0-9_])*
+INTEIROS = 0|([1-9]+[0-9]*)
+PONTUACAO = [";"|"."|","|"="|"("|")"|"{"|"}"|"["|"]"]
 
-%
-    
-/* Insira as regras léxicas no espaço acima */     
-     
-. { throw new RuntimeException("Caractere ilegal! '" + yytext() + "' na linha: " + yyline + ", coluna: " + yycolumn); }
+%%
+"boolean"|"class"|"public"|"extends"|"static"|"void"|"main"|"String"|"int"|"while"|"if"|"else"|"return"|"length"|"true"|"false"|"this"|"new"|"System.out.println" {System.out.println("Palavra reservada: "+ yytext());}
+"&&"|"<"|"=="|"!="|"+"|"-"|"*"|"!" {System.out.println("Operador: "+ yytext());}
+{PONTUACAO} {System.out.println("Delimitadores/pontuacao: "+ yytext());}
+{ID} {System.out.println("Identificador: "+ yytext());}
+{INTEIROS} {System.out.println("Inteiro: "+ yytext());}
+{WS} {/*ignora*/}
+{COMENT} {/*ignora*/}
+. { throw new RuntimeException("Caractere ilegal! " + yytext() + " na linha: " + yyline + ", coluna: " + yycolumn); }
