@@ -51,7 +51,7 @@ System.out.println {System.out.println("Palavra reservada SYSTEM.OUT.PRINTLN: "+
 
 {PONTUACAO} {System.out.println("Delimitadores/pontuacao: "+ yytext());}
 {WS} {/*ignora*/}
-{COMENT} {System.out.println("Alo coment: "+ yytext());}
+{COMENT} {/*ignora*/}
 {ID} {System.out.println("Identificador: "+ yytext());}
 {INTEIROS} {System.out.println("Inteiro: "+ yytext());}
 
